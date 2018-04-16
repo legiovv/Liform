@@ -27,7 +27,7 @@ class Liform implements LiformInterface
     /**
      * @var ExtensionInterface[]
      */
-    private $extensions = [];
+    private $extensions = array();
 
     /**
      * @param ResolverInterface $resolver

@@ -26,7 +26,7 @@ class FormUtil
      */
     public static function typeAncestry(FormInterface $form)
     {
-        $types = [];
+        $types = array();
         self::typeAncestryForType($form->getConfig()->getType(), $types);
 
         return $types;

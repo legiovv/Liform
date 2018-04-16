@@ -22,12 +22,12 @@ class ChoiceTransformer extends AbstractTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = array(), $widget = null)
     {
         $formView = $form->createView();
 
-        $choices = [];
-        $titles = [];
+        $choices = array();
+        $titles = array();
         foreach ($formView->vars['choices'] as $choiceView) {
             if ($choiceView instanceof ChoiceGroupView) {
                 foreach ($choiceView->choices as $choiceItem) {
@@ -55,11 +55,11 @@ class ChoiceTransformer extends AbstractTransformer
     {
         $formView = $form->createView();
 
-        $schema = [
+        $schema = array(
             'enum' => $choices,
             'enum_titles' => $titles,
             'type' => 'string',
-        ];
+        );
 
         if ($formView->vars['expanded']) {
             $schema['widget'] = 'choice-expanded';
@@ -72,16 +72,16 @@ class ChoiceTransformer extends AbstractTransformer
     {
         $formView = $form->createView();
 
-        $schema = [
-            'items' => [
+        $schema = array(
+            'items' => array(
                 'type' => 'string',
                 'enum' => $choices,
                 'enum_titles' => $titles,
                 'minItems' => $this->isRequired($form) ? 1 : 0,
-            ],
+            ),
             'uniqueItems' => true,
             'type' => 'array',
-        ];
+        );
 
         if ($formView->vars['expanded']) {
             $schema['widget'] = 'choice-multiple-expanded';

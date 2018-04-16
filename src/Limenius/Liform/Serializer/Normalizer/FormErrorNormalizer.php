@@ -39,13 +39,13 @@ class FormErrorNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = array())
     {
-        return [
+        return array(
             'code' => isset($context['status_code']) ? $context['status_code'] : null,
             'message' => 'Validation Failed',
             'errors' => $this->convertFormToArray($object),
-        ];
+        );
     }
 
     /**
@@ -65,7 +65,7 @@ class FormErrorNormalizer implements NormalizerInterface
      */
     private function convertFormToArray(FormInterface $data)
     {
-        $form = $errors = [];
+        $form = $errors = array();
         foreach ($data->getErrors() as $error) {
             $errors[] = $this->getErrorMessage($error);
         }
@@ -74,7 +74,7 @@ class FormErrorNormalizer implements NormalizerInterface
             $form['errors'] = $errors;
         }
 
-        $children = [];
+        $children = array();
         foreach ($data->all() as $child) {
             if ($child instanceof FormInterface) {
                 $children[$child->getName()] = $this->convertFormToArray($child);

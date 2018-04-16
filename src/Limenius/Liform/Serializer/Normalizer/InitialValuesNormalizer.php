@@ -26,7 +26,7 @@ class InitialValuesNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function normalize($form, $format = null, array $context = [])
+    public function normalize($form, $format = null, array $context = array())
     {
         $formView = $form->createView();
 

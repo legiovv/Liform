@@ -65,7 +65,7 @@ abstract class AbstractTransformer implements TransformerInterface
      *
      * @return array
      */
-    protected function addCommonSpecs(FormInterface $form, array $schema, $extensions = [], $widget)
+    protected function addCommonSpecs(FormInterface $form, array $schema, $extensions = array(), $widget)
     {
         $schema = $this->addLabel($form, $schema);
         $schema = $this->addAttr($form, $schema);
@@ -105,9 +105,9 @@ abstract class AbstractTransformer implements TransformerInterface
     {
         $translationDomain = $form->getConfig()->getOption('translation_domain');
         if ($label = $form->getConfig()->getOption('label')) {
-            $schema['title'] = $this->translator->trans($label, [], $translationDomain);
+            $schema['title'] = $this->translator->trans($label, array(), $translationDomain);
         } else {
-            $schema['title'] = $this->translator->trans($form->getName(), [], $translationDomain);
+            $schema['title'] = $this->translator->trans($form->getName(), array(), $translationDomain);
         }
 
         return $schema;

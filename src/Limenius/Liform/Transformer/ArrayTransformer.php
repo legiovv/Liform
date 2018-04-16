@@ -44,9 +44,9 @@ class ArrayTransformer extends AbstractTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = array(), $widget = null)
     {
-        $children = [];
+        $children = array();
 
         foreach ($form->all() as $name => $field) {
             $transformerData = $this->resolver->resolve($field);
@@ -70,11 +70,11 @@ class ArrayTransformer extends AbstractTransformer
             $children[0]['title'] = 'prototype';
         }
 
-        $schema = [
+        $schema = array(
             'type' => 'array',
             'title' => $form->getConfig()->getOption('label'),
             'items' => $children[0],
-        ];
+        );
 
         $schema = $this->addCommonSpecs($form, $schema, $extensions, $widget);
 

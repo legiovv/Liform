@@ -23,9 +23,9 @@ class StringTransformer extends AbstractTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = array(), $widget = null)
     {
-        $schema = ['type' => 'string'];
+        $schema = array('type' => 'string');
         $schema = $this->addCommonSpecs($form, $schema, $extensions, $widget);
         $schema = $this->addMaxLength($form, $schema);
         $schema = $this->addMinLength($form, $schema);

@@ -23,7 +23,7 @@ class Resolver implements ResolverInterface
     /**
      * @var TransformerInterface[]
      */
-    private $transformers = [];
+    private $transformers = array();
 
     /**
      * @param string               $formType
@@ -32,10 +32,10 @@ class Resolver implements ResolverInterface
      */
     public function setTransformer($formType, TransformerInterface $transformer, $widget = null)
     {
-        $this->transformers[$formType] = [
+        $this->transformers[$formType] = array(
             'transformer' => $transformer,
             'widget' => $widget,
-        ];
+        );
     }
 
     /**
@@ -53,10 +53,10 @@ class Resolver implements ResolverInterface
 
         // Perhaps a compound we don't have a specific transformer for
         if (FormUtil::isCompound($form)) {
-            return [
+            return array(
                 'transformer' => $this->transformers['compound']['transformer'],
                 'widget' => null,
-            ];
+            );
         }
 
         throw new TransformerException(

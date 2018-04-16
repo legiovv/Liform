@@ -44,11 +44,11 @@ class CompoundTransformer extends AbstractTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = array(), $widget = null)
     {
-        $data = [];
+        $data = array();
         $order = 1;
-        $required = [];
+        $required = array();
 
         foreach ($form->all() as $name => $field) {
             $transformerData = $this->resolver->resolve($field);
@@ -62,11 +62,11 @@ class CompoundTransformer extends AbstractTransformer
             }
         }
 
-        $schema = [
+        $schema = array(
             'title' => $form->getConfig()->getOption('label'),
             'type' => 'object',
             'properties' => $data,
-        ];
+        );
 
         if (!empty($required)) {
             $schema['required'] = $required;
